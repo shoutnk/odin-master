@@ -39,6 +39,7 @@ public class LvapManager {
 		
 			flow1.setCookie(12345);
 			flow1.setPriority((short) 200); 
+            flow1.setBufferId((int) -1);
 			flow1.setMatch(match);
 			flow1.setIdleTimeout((short) 0);
 			flow1.setActions(actionList);
@@ -60,16 +61,61 @@ public class LvapManager {
 		
 			flow2.setCookie(12345);
 			flow2.setPriority((short) 200);
+            flow2.setBufferId((int) -1);
 			flow2.setMatch(match);
 			flow2.setIdleTimeout((short) 0);
 			flow2.setActions(actionList);
 	        flow2.setLength(U16.t(OFFlowMod.MINIMUM_LENGTH + OFActionOutput.MINIMUM_LENGTH));
+		}
+		OFFlowMod flow3 = new OFFlowMod();
+		{
+			OFMatch match = new OFMatch();
+			match.fromString("in_port=2,dl_type=0x0806,nw_src=" + inetAddr.getHostAddress());
+			
+			OFActionOutput actionOutput = new OFActionOutput ();
+			actionOutput.setPort((short) 1);
+			actionOutput.setLength((short) OFActionOutput.MINIMUM_LENGTH);
+			
+			List<OFAction> actionList = new ArrayList<OFAction>();
+			actionList.add(actionOutput);
+			
+		
+			flow3.setCookie(12345);
+			flow3.setPriority((short) 200);
+            flow3.setBufferId((int) -1);
+			flow3.setMatch(match);
+			flow3.setIdleTimeout((short) 0);
+			flow3.setActions(actionList);
+	        flow3.setLength(U16.t(OFFlowMod.MINIMUM_LENGTH + OFActionOutput.MINIMUM_LENGTH));
+		}
+		OFFlowMod flow4 = new OFFlowMod();
+		{
+			OFMatch match = new OFMatch();
+			match.fromString("in_port=1,dl_type=0x0806,nw_dst=" + inetAddr.getHostAddress());
+			
+			OFActionOutput actionOutput = new OFActionOutput ();
+			actionOutput.setPort((short) 2);
+			actionOutput.setLength((short) OFActionOutput.MINIMUM_LENGTH);
+			
+			List<OFAction> actionList = new ArrayList<OFAction>();
+			actionList.add(actionOutput);
+			
+		
+			flow4.setCookie(12345);
+			flow4.setPriority((short) 200);
+            flow4.setBufferId((int) -1);
+			flow4.setMatch(match);
+			flow4.setIdleTimeout((short) 0);
+			flow4.setActions(actionList);
+	        flow4.setLength(U16.t(OFFlowMod.MINIMUM_LENGTH + OFActionOutput.MINIMUM_LENGTH));
 		}
 		
 		ArrayList<OFMessage> list = new ArrayList<OFMessage>();
 		
 		list.add(flow1);
 		list.add(flow2);
+		list.add(flow3);
+		list.add(flow4);
 		
 		return list;
 	}

@@ -216,6 +216,7 @@ class OdinAgent implements IOdinAgent {
 		
 			flow2.setCookie(67);
 			flow2.setPriority((short) 200);
+            flow2.setBufferId((int) -1);
 			flow2.setMatch(match);
 			flow2.setIdleTimeout((short) 0);
 			flow2.setActions(actionList);
@@ -224,6 +225,7 @@ class OdinAgent implements IOdinAgent {
 		
 		try {
 			ofSwitch.write(flow2, null);
+            System.out.println("DHCP flow rule is installed to " + host.getHostAddress());
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
