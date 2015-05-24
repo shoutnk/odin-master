@@ -120,6 +120,7 @@ public class OdinMaster implements IFloodlightModule, IOFSwitchListener, IOdinAp
 					// Push flow messages associated with the client
         			try {
         				lvap.getAgent().getSwitch().write(lvap.getOFMessageList(), null);
+                        log.info("Default flow rules are installed to " + lvap.getBssid() + " for " + client.getMacAddress());
         			} catch (IOException e) {
         				log.error("Failed to update switch's flow tables " + lvap.getAgent().getSwitch());
         			}
@@ -309,6 +310,7 @@ public class OdinMaster implements IFloodlightModule, IOFSwitchListener, IOdinAp
 				// Push flow messages associated with the client
 				try {
 					newAgent.getSwitch().write(lvap.getOFMessageList(), null);
+                    log.info("First flow rules are installed to " + lvap.getBssid() + " for " + clientHwAddr);
 				} catch (IOException e) {
 					log.error("Failed to update switch's flow tables " + newAgent.getSwitch());
 				}
@@ -354,6 +356,7 @@ public class OdinMaster implements IFloodlightModule, IOFSwitchListener, IOdinAp
 			// Push flow messages associated with the client
 			try {
 				newAgent.getSwitch().write(lvap.getOFMessageList(), null);
+                log.info("Copy flow rules to " + client.getLvap().getBssid() + " for " + clientHwAddr);
 			} catch (IOException e) {
 				log.error("Failed to update switch's flow tables " + newAgent.getSwitch());
 			}
@@ -894,6 +897,7 @@ public class OdinMaster implements IFloodlightModule, IOFSwitchListener, IOdinAp
         			// Push flow messages associated with the client
         			try {
         				oc.getLvap().getAgent().getSwitch().write(oc.getLvap().getOFMessageList(), null);
+                        log.info("Default flow rules are installed to " + oc.getLvap().getBssid() + " for " + oc.getMacAddress());
         			} catch (IOException e) {
         				log.error("Failed to update switch's flow tables " + oc.getLvap().getAgent().getSwitch());
         			}

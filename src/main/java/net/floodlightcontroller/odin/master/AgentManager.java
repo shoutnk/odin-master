@@ -100,7 +100,7 @@ class AgentManager {
      * @return true if an agent was added
      */
 	protected boolean receivePing(final InetAddress odinAgentAddr) {
-		log.info("Ping message from: " + odinAgentAddr);
+		//log.info("Ping message from: " + odinAgentAddr);
 		
     	/* 
     	 * If this is not the first time we're hearing from this
@@ -224,7 +224,7 @@ class AgentManager {
 		
 		@Override
 		public void run() {
-			log.info("Executing failure check against: " + agent.getIpAddress());
+			//log.info("Executing failure check against: " + agent.getIpAddress());
 			if ((System.currentTimeMillis() - agent.getLastHeard()) >= agentTimeout) {
 				log.error("Agent: " + agent.getIpAddress() + " has timed out");
 				
