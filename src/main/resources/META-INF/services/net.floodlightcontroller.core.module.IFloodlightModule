@@ -19,3 +19,5 @@ net.floodlightcontroller.threadpool.ThreadPool
 net.floodlightcontroller.ui.web.StaticWebRoutable
 net.floodlightcontroller.virtualnetwork.VirtualNetworkFilter
 net.floodlightcontroller.odin.master.OdinMaster
+net.floodlightcontroller.dhcpserver.DHCPServer
+net.floodlightcontroller.dhcpserver.DHCPSwitchFlowSetter
